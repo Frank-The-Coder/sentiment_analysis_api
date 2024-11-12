@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentiment-analysis-deployment
+spec:
+  replicas: 1  # Number of instances (pods) to run
+  selector:
+    matchLabels:
+      app: sentiment-analysis
+  template:
+    metadata:
+      labels:
+        app: sentiment-analysis
+    spec:
+      containers:
+      - name: sentiment-analysis
+        image: gcr.io/sentiment-analysis-api-441320/sentiment-analysis-api:latest  # Replace with your actual image
+        ports:
+        - containerPort: 8080  # This should match the port exposed by Uvicorn in your Dockerfile
