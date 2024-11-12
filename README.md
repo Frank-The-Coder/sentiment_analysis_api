@@ -18,7 +18,7 @@ The Sentiment Analysis API allows users to submit text and receive a sentiment p
 
 Predicts the sentiment of the provided text.
 
-- **URL**: `https://https://sentiment-analysis-api-469205853326.us-central1.run.app/predict`
+- **URL**: `https://sentiment-analysis-api-469205853326.us-central1.run.app/predict`
 - **Method**: `POST`
 - **Content-Type**: `application/json`
 - **Request Body**:
@@ -74,9 +74,12 @@ To start the API locally:
    ```
 
 2. **Test the endpoint**:
+
    ```bash
    curl -X POST "http://localhost:8000/predict" -H "Content-Type: application/json" -d "{\"text\": \"Hello, I went to Disneyland today!\"}"
    ```
+
+   _Note_: You can replace `http://localhost:8000/predict` with `https://sentiment-analysis-api-469205853326.us-central1.run.app/predict` since the API has been deployed on Google Cloud Run.
 
 ### Docker Deployment
 
