@@ -4,10 +4,13 @@ from pydantic import BaseModel
 from app.model import predict_sentiment
 from app.preprocess import clean_text
 
+
 app = FastAPI()
+
 
 class SentimentRequest(BaseModel):
     text: str
+
 
 @app.post("/predict")
 async def predict(request: SentimentRequest):
@@ -16,6 +19,7 @@ async def predict(request: SentimentRequest):
         raise HTTPException(status_code=400, detail="Input text cannot be empty.")
     result = predict_sentiment(clean_text_input)
     return result
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8080))

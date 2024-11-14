@@ -1,11 +1,43 @@
-# Python cache files
+# Python
 __pycache__/
 *.py[cod]
+*.pyo
 
 # Virtual environment
 venv/
+.env  # Environment variables, if you store them here
 
-# Miscellaneous
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyd
+*.so
+*.dll
+
+# macOS
 .DS_Store
-.idea/
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Kubernetes
+*.kubeconfig
+
+# IDEs
 .vscode/
+.idea/
+
+# GitHub Actions and build files
+.github/workflows/*.yml
+
+# Ignore any service account keys
+*.json  # Or specify specific names if needed, like service-account.json
+
+# General cloud and config files
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Logs and debugging files
+logs/
+*.log
