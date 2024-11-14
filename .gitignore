@@ -27,9 +27,6 @@ docker-compose.override.yml
 .vscode/
 .idea/
 
-# GitHub Actions and build files
-.github/workflows/*.yml
-
 # Ignore any service account keys
 *.json  # Or specify specific names if needed, like service-account.json
 
