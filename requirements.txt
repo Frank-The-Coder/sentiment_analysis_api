@@ -5,3 +5,4 @@ torch
 pytest
 flake8
 fastapi[test]  # includes TestClient for testing FastAPI
+httpx
