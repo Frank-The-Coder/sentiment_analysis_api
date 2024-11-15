@@ -88,9 +88,6 @@ jobs:
           location: "${{ env.GAR_LOCATION }}"
           project_id: "${{ env.PROJECT_ID }}" # Add this line
 
-      - name: "Verify kubectl Access"
-        run: kubectl get nodes
-
       # Build the Docker image
       - name: "Build and push Docker container"
         run: |-
@@ -116,20 +113,19 @@ jobs:
           # Make the binary executable
           chmod u+x kustomize
 
-      # Deploy the Docker image to the GKE cluster
       - name: "Deploy to GKE"
         run: |-
           # Navigate to the directory containing kustomization.yaml
           cd k8s
 
           # Set the image in the kustomization.yaml file using the kustomize binary from the root directory
-          ../kustomize edit set image static-site=${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY}}/${{ env.IMAGE}}:${GITHUB_SHA}
+          ../kustomize edit set image static-site=us-central1-docker.pkg.dev/${{ env.PROJECT_ID}}/${{ env.REPOSITORY}}/${{ env.IMAGE}}:${GITHUB_SHA}
 
           # Build and apply the configuration to the Kubernetes cluster
           ../kustomize build . | kubectl apply -f -
 
           # Check the rollout status of the deployment
-          kubectl rollout status deployment/${DEPLOYMENT_NAME}
+          kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME}}
 
           # List the services with detailed output
           kubectl get services -o wide
