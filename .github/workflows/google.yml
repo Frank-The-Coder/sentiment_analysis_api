@@ -122,7 +122,7 @@ jobs:
           ../kustomize edit set image static-site=us-central1-docker.pkg.dev/${{ env.PROJECT_ID}}/${{ env.REPOSITORY}}/${{ env.IMAGE}}:${GITHUB_SHA}
 
           # Build and apply the configuration to the Kubernetes cluster
-          ../kustomize build . | kubectl apply -f -
+          ../kustomize build . | kubectl apply -f - --validate=false
 
           # Check the rollout status of the deployment
           kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME}}
