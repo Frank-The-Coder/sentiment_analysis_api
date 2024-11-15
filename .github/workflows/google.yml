@@ -88,6 +88,9 @@ jobs:
           location: "${{ env.GAR_LOCATION }}"
           project_id: "${{ env.PROJECT_ID }}" # Add this line
 
+      - name: "Verify kubectl Access"
+        run: kubectl get nodes
+
       # Build the Docker image
       - name: "Build and push Docker container"
         run: |-
