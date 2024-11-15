@@ -91,7 +91,7 @@ jobs:
       # Build the Docker image
       - name: "Build and push Docker container"
         run: |-
-          DOCKER_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
+          DOCKER_TAG="${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY}}/${{ env.IMAGE}}:${GITHUB_SHA}"
 
           docker build \
             --tag "${DOCKER_TAG}" \
@@ -120,7 +120,7 @@ jobs:
           cd k8s
 
           # Set the image in the kustomization.yaml file using the kustomize binary from the root directory
-          ../kustomize edit set image static-site=${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}
+          ../kustomize edit set image static-site=${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY}}/${{ env.IMAGE}}:${GITHUB_SHA}
 
           # Build and apply the configuration to the Kubernetes cluster
           ../kustomize build . | kubectl apply -f -
