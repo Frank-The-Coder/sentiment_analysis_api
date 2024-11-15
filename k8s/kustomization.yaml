@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - deployment.yaml
+  - service.yaml
+images:
+  - name: static-site # Original name in your Kubernetes manifests
+    newName: us-central1-docker.pkg.dev/sentiment-analysis-api-441320/cloud-run-source-deploy/static-site
+    newTag: $GITHUB_SHA # This would typically be the GitHub SHA or another tag for versioning
